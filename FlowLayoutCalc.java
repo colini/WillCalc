@@ -1,32 +1,32 @@
 /**
  * Created by ingarfie_902980 on 5/27/2015.
  */
+
 import javax.swing.*;
 import java.awt.*;
-import java.applet.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FlowLayoutCalc extends Applet
+public class FlowLayoutCalc extends JApplet
                             implements ActionListener{
-    Button addition;
-    Button subtraction;
-    Button multiplication;
-    Button division;
-    Button one;
-    Button two;
-    Button three;
-    Button four;
-    Button five;
-    Button six;
-    Button seven;
-    Button eight;
-    Button nine;
-    Button zero;
-    Button clear;
-    Button equals;
-    Button info;
-    TextField field;
+    JButton addition;
+    JButton subtraction;
+    JButton multiplication;
+    JButton division;
+    JButton one;
+    JButton two;
+    JButton three;
+    JButton four;
+    JButton five;
+    JButton six;
+    JButton seven;
+    JButton eight;
+    JButton nine;
+    JButton zero;
+    JButton clear;
+    JButton equals;
+    JButton info;
+    JTextField field;
     JFrame frame;
     JPanel gridPanel;
     JPanel rowOne;
@@ -36,8 +36,8 @@ public class FlowLayoutCalc extends Applet
     JPanel rowFive;
     JPanel rowSix;
 
+    @Override
     public void init(){
-
         JButton addition = new JButton("    +    ");
         JButton subtraction = new JButton("    -    ");
         JButton multiplication = new JButton("    *   ");
@@ -54,7 +54,7 @@ public class FlowLayoutCalc extends Applet
         JButton zero = new JButton("   0   ");
         JButton clear = new JButton("   C   ");
         JButton equals = new JButton("   =   ");
-        JButton info = new JButton(" Info ");
+        this.info = new JButton(" Info ");
         JTextField field = new JTextField("",30);
 
         gridPanel = new JPanel();
@@ -113,21 +113,29 @@ public class FlowLayoutCalc extends Applet
             }
 
         }
-        gridPanel.setVisible(true);
 
-
+        // Listen for actions on the 'info' button, so actionPerformed() will
+        // be called when it is clicked.
+        info.addActionListener(this);
     }
 
+    @Override
     public void paint(Graphics g)
     {
 
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt){
-        if (evt.getSource() == info)
-        {
-            JOptionPane.showMessageDialog(, "TEST");
-        }
+        print("actionPerformed: "+evt);
 
+        if (evt.getSource() == info) {
+            print("info clicked");
+            JOptionPane.showMessageDialog(null, "TEST");
+        }
+    }
+
+    private static void print(String msg) {
+        System.out.println(msg);
     }
 }
